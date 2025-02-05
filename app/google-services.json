@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "658953952184",
+    "project_id": "cade-a-van-891912p",
+    "storage_bucket": "cade-a-van-891912p.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658953952184:android:56b33a7a53fd72576f0d4d",
+        "android_client_info": {
+          "package_name": "br.com.app.cadeavan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBinKbMuAQbLX-yR690py8EkiV7SX5jrhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

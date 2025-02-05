@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="YellowDarkDark">#FFFABD2F</color>
+    <color name="YellowLightDark">#FFD79921</color>
+    <color name="YellowDarkLight">#FFD79921</color>
+    <color name="YellowLightLight">#FFB57614</color>
+    <color name="BgDark">#FF282828</color>
+    <color name="FgDark">#FFEBDBB2</color>
+    <color name="BgLight">#FFFBF1C7</color>
+    <color name="FgLight">#FF3C3836</color>
+</resources>
