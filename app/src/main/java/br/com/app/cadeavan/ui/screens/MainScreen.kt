@@ -25,17 +25,17 @@ fun MainScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(
-            onClick = { navController.navigate("driver") },
+            onClick = { navController.navigate("Motorista") },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Sou Motorista")
+            Text("Sou o Motorista")
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = { navController.navigate("tracker") },
+            onClick = { navController.navigate("Responsável") },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Rastrear Veículo")
+            Text("Sou o Responsável")
         }
     }
 }

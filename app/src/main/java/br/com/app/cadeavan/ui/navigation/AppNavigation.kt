@@ -12,9 +12,9 @@ import br.com.app.cadeavan.ui.screens.TrackerScreen
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "main") {
-        composable("main") { MainScreen(navController) }
-        composable("driver") { DriverScreen(navController) }
-        composable("tracker") { TrackerScreen(navController) }
+    NavHost(navController = navController, startDestination = "Início") {
+        composable("Tela Inicial") { MainScreen(navController) }
+        composable("Motorista") { DriverScreen(navController) }
+        composable("Responsável") { TrackerScreen(navController) }
     }
 }

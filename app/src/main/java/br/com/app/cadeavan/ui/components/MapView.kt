@@ -9,7 +9,7 @@ import com.google.maps.android.compose.rememberCameraPositionState
 
 @Composable
 fun MapView(modifier: Modifier = Modifier) {
-    val saoPaulo = LatLng(-23.5505, -46.6333)
+    val saoPaulo = LatLng(-23.5505, -46.6333) // Exemplo: Coordenadas de São Paulo
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(saoPaulo, 10f)
     }
