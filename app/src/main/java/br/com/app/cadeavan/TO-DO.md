@@ -1,99 +1,106 @@
-## 1. Location Repository:
+## TO-DO.md
 
-**Improvement:** Create a LocationRepository class to encapsulate all location-related data operations.
+### **Tarefas Concluídas**
 
-**Why:**
+1. **Location Repository:**
+    - Criada a interface `LocationRepository`.
+    - Implementada a classe `FirebaseLocationRepository` para lidar com operações específicas do Firebase.
+    - O `LocationViewModel` foi atualizado para usar o `LocationRepository` injetado via Hilt.
 
-- **Separation of Concerns**: This would further separate the data logic from the ViewModel, making the code more modular and testable.
-- **Abstraction**: The ViewModel wouldn't need to know the details of how the location is sent to Firebase or how it's retrieved.
-- **Maintainability**: Changes to the data source (e.g., switching from Firebase to a different database) would only require modifications in the LocationRepository.
+2. **Dependency Injection:**
+    - Configurado o Hilt no projeto.
+    - O `LocationViewModel` e o `LocationRepository` estão sendo injetados corretamente.
 
-**How:**
+3. **Error Handling:**
+    - Implementada a classe `LocationError` para representar diferentes tipos de erros.
+    - O `LocationViewModel` foi atualizado para usar `LocationError` em vez de `String` para mensagens de erro.
+    - As telas `DriverScreen` e `TrackerScreen` foram atualizadas para exibir mensagens de erro específicas com base no tipo de erro.
 
-- Create a LocationRepository interface with methods like sendDriverLocation, listenToDriverLocation, etc.
-- Create a FirebaseLocationRepository class that implements the interface and handles Firebase-specific logic.
-- Inject the LocationRepository into the LocationViewModel.
+4. **Location Updates:**
+    - Implementado o `LocationService` para enviar atualizações de localização em tempo real para o Firebase.
 
-## 2. Dependency Injection:
+5. **Firebase Realtime Database:**
+    - Configurada a estrutura básica do Firebase, com dados de localização sendo armazenados no caminho `drivers/{driverId}`.
 
-**Improvement**: Use a dependency injection framework like Hilt to manage dependencies.
+6. **Code Style and Readability:**
+    - O código foi organizado e padronizado seguindo as convenções do Kotlin.
 
-**Why**:
+---
 
-- **Reduced Boilerplate**: Hilt would handle the creation and injection of dependencies automatically, reducing the amount of manual code.
-- **Testability**: Hilt makes it easier to test components in isolation.
-- **Scalability**: As the project grows, Hilt will help manage the increasing complexity of dependencies.
+### **Tarefas em Andamento**
 
-**How**:
+1. **Filtrar Atualizações de Localização:**
+    - Implementar filtros para evitar o envio de localizações redundantes (por distância ou tempo).
 
-- Add Hilt dependencies to build.gradle.kts.
-- Annotate the Application class with @HiltAndroidApp.
-- Annotate the LocationViewModel constructor with @Inject.
-- Annotate the LocationRepository constructor with @Inject.
+2. **Melhorar a Estrutura de Dados no Firebase:**
+    - Armazenar mais informações sobre a localização, como precisão, velocidade e timestamp.
+    - Organizar os dados em um caminho mais estruturado, como `drivers/{driverId}/locations/{locationId}`.
 
-## 3. Error Handling:
+---
 
-**Improvement**: Create a more robust error-handling mechanism.
+### **Próximos Passos**
 
-**Why**:
+1. **Filtrar Atualizações de Localização:**
+    - **O que fazer:**
+        - Implementar filtros de distância (por exemplo, enviar apenas se o motorista se mover mais de 10 metros).
+        - Implementar filtros de tempo (por exemplo, enviar apenas a cada 30 segundos).
+    - **Por que fazer:**
+        - Reduzir o consumo de bateria e dados.
+        - Diminuir os custos do Firebase.
+    - **Como fazer:**
+        - Adicionar lógica no `LocationService` para verificar a distância e o tempo desde a última atualização.
 
-- **Clarity**: The current error handling is basic. A more structured approach would make it easier to understand and handle different types of errors.
-- **User Experience**: More specific error messages can help the user understand what went wrong.
-- **Debugging**: More detailed error information can help with debugging.
+2. **Melhorar a Estrutura de Dados no Firebase:**
+    - **O que fazer:**
+        - Armazenar mais informações sobre a localização, como precisão, velocidade e timestamp.
+        - Organizar os dados em um caminho mais estruturado, como `drivers/{driverId}/locations/{locationId}`.
+    - **Por que fazer:**
+        - Facilitar consultas e análises no futuro.
+        - Melhorar a escalabilidade do projeto.
+    - **Como fazer:**
+        - Atualizar o método `sendLocationToFirebase` no `FirebaseLocationRepository` para incluir mais campos.
 
-**How**:
+3. **Testes Unitários:**
+    - **O que fazer:**
+        - Escrever testes unitários para o `LocationViewModel`, `LocationRepository` e `LocationService`.
+    - **Por que fazer:**
+        - Garantir que o código funcione conforme o esperado.
+        - Facilitar a manutenção e a detecção de bugs.
+    - **Como fazer:**
+        - Usar bibliotecas como **JUnit**, **MockK** e **Turbine** para testar fluxos e comportamentos.
 
-- Create a sealed class for errors (e.g., LocationError) with subclasses for different error types (e.g., NetworkError, PermissionError, FirebaseError).
-- Use this sealed class in the LocationUiState to provide more specific error information.
+4. **Melhorar a UI:**
+    - **O que fazer:**
+        - Adicionar um ícone personalizado para a notificação do `LocationService`.
+        - Melhorar a exibição da localização no mapa, com marcadores personalizados e animações.
+    - **Por que fazer:**
+        - Melhorar a experiência do usuário.
+        - Tornar a interface mais atraente e funcional.
 
-## 4. Location Updates:
+5. **Documentação e Organização:**
+    - **O que fazer:**
+        - Atualizar o `TO-DO.md` com as tarefas concluídas e as próximas etapas.
+        - Documentar o código com comentários claros e explicativos.
+    - **Por que fazer:**
+        - Facilitar a colaboração e a manutenção do projeto.
+        - Manter o progresso do projeto organizado e transparente.
 
-**Improvement**: Add logic to filter out redundant location updates.
+---
 
-**Why**:
+### **Resumo**
 
-- **Battery Life**: Sending every single location update to Firebase can be very battery-intensive.
-- **Data Usage**: It can also consume a lot of data.
-- **Firebase Costs**: Frequent updates can increase Firebase costs.
+- **Concluído:**
+    - Implementação do `LocationRepository` e `FirebaseLocationRepository`.
+    - Configuração do Hilt para injeção de dependências.
+    - Implementação básica do `LocationService` e `LocationViewModel`.
+    - Tratamento de erros com a classe `LocationError`.
 
-**How**:
+- **Em Andamento:**
+    - Filtragem de atualizações de localização.
+    - Melhoria na estrutura de dados do Firebase.
 
-- Implement a distance filter: Only send updates if the driver has moved a certain distance.
-- Implement a time filter: Only send updates after a certain time interval.
-- Combine both filters.
-
-## 5. Firebase Realtime Database:
-
-**Improvement**: Consider using a more structured data model in Firebase.
-
-**Why**:
-
-- **Scalability**: A more structured model will be easier to scale as the project grows.
-- **Querying**: It will be easier to query the data if it's structured properly.
-
-**How**:
-
-- Instead of just storing latitude and longitude, consider storing a Location object with more properties (e.g., timestamp, accuracy, speed).
-- Use a more organized path structure in Firebase (e.g., drivers/{driverId}/locations/{locationId}).
-
-## 6. Code Style and Readability:
-
-**Improvement**: Ensure consistent code style throughout the project.
-
-**Why**:
-
-- **Maintainability**: Consistent code is easier to read and maintain.
-- **Collaboration**: It makes it easier for multiple developers to work on the project.
-
-**How**:
-
-- Use the Kotlin coding conventions.
-- Use a code formatter.
-
-## 7. LocationHelper:
-
-**Improvement**: The LocationHelper class is a good start, but it could be improved by making it more generic.
-
-**Why**:
-
-- **Reusability**: The LocationHelper class could be used in other parts of the project.
+- **Próximos Passos:**
+    - Implementar filtros para atualizações de localização.
+    - Melhorar a estrutura de dados no Firebase.
+    - Escrever testes unitários.
+    - Melhorar a UI e a documentação.
