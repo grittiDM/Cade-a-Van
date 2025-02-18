@@ -68,7 +68,7 @@ ___
 [![Discord](https://skillicons.dev/icons?i=discord)](https://discord.gg/b3zP3ArVJk)
 [![E-mail](https://skillicons.dev/icons?i=gmail)](mailto:dev.murilogritti@gmail.com)
 [![Linkedin](https://skillicons.dev/icons?i=linkedin)](https://www.linkedin.com/in/murilo-gritti)
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](buymeacoffee.com/moonrilo)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/moonrilo)
 
 <!-- Contato -->
 
