@@ -2,16 +2,20 @@ package br.com.app.cadeavan.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.app.cadeavan.repositories.LocationRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LocationViewModel : ViewModel() {
-
-    private val repository = LocationRepository()
+@HiltViewModel
+class LocationViewModel @Inject constructor(
+    private val repository: LocationRepository // Injeção de dependência
+) : ViewModel() {
 
     // Estado da localização do motorista
     private val _driverLocation = MutableStateFlow<Pair<Double, Double>?>(null)
@@ -22,8 +26,8 @@ class LocationViewModel : ViewModel() {
     val isLoading: StateFlow<Boolean> = _isLoading
 
     // Estado de erro
-    private val _error = MutableStateFlow<String?>(null)
-    val error: StateFlow<String?> = _error
+    private val _error = MutableStateFlow<LocationError?>(null)
+    val error: StateFlow<LocationError?> = _error
 
     // Envia a localização do motorista
     fun sendDriverLocation(driverId: String, latitude: Double, longitude: Double) {
@@ -33,7 +37,12 @@ class LocationViewModel : ViewModel() {
                 repository.sendDriverLocation(driverId, latitude, longitude) // Envia a localização
                 _isLoading.value = false // Indica que a operação foi concluída
             } catch (e: Exception) {
-                _error.value = "Erro ao enviar localização: ${e.message}" // Armazena o erro
+                _error.value = when (e) {
+                    is java.net.UnknownHostException -> LocationError.NetworkError("Erro de rede: ${e.message}")
+                    is SecurityException -> LocationError.PermissionError("Permissão negada: ${e.message}")
+                    is com.google.firebase.database.DatabaseException -> LocationError.FirebaseError("Erro no Firebase: ${e.message}")
+                    else -> LocationError.UnknownError("Erro desconhecido: ${e.message}")
+                }
                 _isLoading.value = false // Indica que a operação foi concluída (com erro)
             }
         }
@@ -45,7 +54,12 @@ class LocationViewModel : ViewModel() {
             repository.listenToDriverLocation(driverId)
                 .onStart { _isLoading.value = true }
                 .catch { e ->
-                    _error.value = "Erro ao obter localização: ${e.message}"
+                    _error.value = when (e) {
+                        is java.net.UnknownHostException -> LocationError.NetworkError("Erro de rede: ${e.message}")
+                        is SecurityException -> LocationError.PermissionError("Permissão negada: ${e.message}")
+                        is com.google.firebase.database.DatabaseException -> LocationError.FirebaseError("Erro no Firebase: ${e.message}")
+                        else -> LocationError.UnknownError("Erro desconhecido: ${e.message}")
+                    }
                     _isLoading.value = false
                 }
                 .collect { location ->

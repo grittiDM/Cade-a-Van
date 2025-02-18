@@ -13,7 +13,7 @@ fun AppNavigation() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "Início") {
-        composable("Tela Inicial") { MainScreen(navController) }
+        composable("Início") { MainScreen(navController) }
         composable("Motorista") { DriverScreen(navController) }
         composable("Responsável") { TrackerScreen(navController) }
     }
