@@ -1,14 +1,13 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google()
         mavenCentral()
         gradlePluginPortal()
+    }
+    plugins {
+        id("com.android.application") version "8.3.0" apply false
+        id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+        id("com.google.dagger.hilt.android") version "2.50" apply false
     }
 }
 dependencyResolutionManagement {
@@ -18,6 +17,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-rootProject.name = "CadeaVan"
+rootProject.name = "MyApplication"
 include(":app")

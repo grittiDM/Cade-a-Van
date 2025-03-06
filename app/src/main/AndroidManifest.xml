@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permissões de uso de Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- Permissões de localização -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
@@ -9,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name=".CadeAVan"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,23 +23,23 @@
         android:theme="@style/Theme.CadeAVan"
         tools:targetApi="31">
 
-        <!-- Activity principal -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.CadeAVan">
+    <!-- Activity principal -->
+    <activity
+        android:name=".CadeAVan"
+        android:exported="true"
+        android:theme="@style/Theme.CadeAVan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+    </activity>
 
-        <!-- Serviço de localização -->
-        <service
-            android:name=".services.LocationService"
-            android:exported="false"
-            android:foregroundServiceType="location" />
+    <!-- Serviço de localização -->
+    <service
+        android:name=".sources.LocationService"
+        android:exported="false"
+        android:foregroundServiceType="location" />
+
     </application>
 
 </manifest>

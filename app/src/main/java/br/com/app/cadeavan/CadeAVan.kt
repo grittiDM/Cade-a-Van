@@ -8,7 +8,7 @@ import com.google.firebase.FirebaseApp
 import br.com.app.cadeavan.ui.theme.CadeAVanTheme
 import br.com.app.cadeavan.navigation.AppNavigation
 
-class MainActivity : ComponentActivity() {
+class CadeAVan : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
