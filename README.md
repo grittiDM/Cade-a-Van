@@ -61,6 +61,17 @@ Porém celular e direção são coisas que não combinam quando se trata de segu
 - Controle de Pagamento;
 - Chat dedicado para comunicação dentro do App.
 
+___
+<!-- Contato -->
+
+[![Instagram](https://skillicons.dev/icons?i=instagram)](https://instagram.com/_m.gritti/)
+[![Discord](https://skillicons.dev/icons?i=discord)](https://discord.gg/b3zP3ArVJk)
+[![E-mail](https://skillicons.dev/icons?i=gmail)](mailto:dev.murilogritti@gmail.com)
+[![Linkedin](https://skillicons.dev/icons?i=linkedin)](https://www.linkedin.com/in/murilo-gritti)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/moonrilo)
+
+<!-- Contato -->
+
 [^1]: [Lei nº 15.100/2025 ](https://www.in.gov.br/en/web/dou/-/lei-n-15.100-de-13-de-janeiro-de-2025-606772935)
 
 [^2]: [Artigo n.º 252 do Código de Trânsito Brasileiro](https://www.ctbdigital.com.br/artigo/art252)
